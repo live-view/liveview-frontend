@@ -20,7 +20,7 @@ const LiveView = () => {
         Addresses: {addresses.join(", ")}
       </div>
       <button
-        className="mx-4 my-2 bg-teal-500"
+        className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
         onClick={() => {
           setChain("Unknown");
           setAddresses([]);

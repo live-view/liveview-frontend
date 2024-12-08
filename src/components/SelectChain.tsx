@@ -27,7 +27,7 @@ const SelectChain = () => {
       </select>
       <br />
       <button
-        className="mx-4 my-2 bg-teal-500"
+        className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
         onClick={() => setStep(Step.SelectAddress)}
         disabled={chain === "Unknown"}
       >

@@ -59,18 +59,21 @@ const SelectAddress = () => {
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-        <button className="mx-4 my-2 bg-teal-500" type="submit">
+        <button
+          className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
+          type="submit"
+        >
           Add
         </button>
       </form>
       <button
-        className="mx-4 my-2 bg-teal-500"
+        className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
         onClick={() => setStep(Step.SelectChain)}
       >
         Previous
       </button>
       <button
-        className="mx-4 my-2 bg-teal-500"
+        className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
         onClick={() => setStep(Step.LiveView)}
         disabled={addresses.length === 0}
       >
