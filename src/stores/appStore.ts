@@ -30,7 +30,7 @@ type Actions = {
 };
 
 export const useAppStore = create<State & Actions>()((set) => ({
-  step: Step.SelectChain,
+  step: Step.SelectAddress,
   chain: "Unknown",
   addresses: [],
 
@@ -39,18 +39,22 @@ export const useAppStore = create<State & Actions>()((set) => ({
     set({ step });
   },
   setChain: (chain: ChainType) => {
-    set({ chain });
+    // set({chain,  });
+    set((state) => ({ ...state, chain, step: Step.SelectAddress }));
   },
   setAddresses: (addresses: string[]) => {
-    set({ addresses });
+    // set({ addresses });
+    set((state) => ({ ...state, addresses, step: Step.LiveView }));
   },
   addAddress: (address: string) => {
     set((state) => ({
+      ...state,
       addresses: [...state.addresses, address],
     }));
   },
   removeAddress: (address: string) => {
     set((state) => ({
+      ...state,
       addresses: state.addresses.filter((x) => x !== address),
     }));
   },

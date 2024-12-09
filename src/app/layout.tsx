@@ -1,14 +1,14 @@
 import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
 
-import { Ubuntu as Font } from "next/font/google";
+import { Inter as Font } from "next/font/google";
 
 import "@/styles/globals.css";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-
-const font = Font({ subsets: ["latin"], weight: ["300", "400", "500", "700"] });
+const font = Font({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const title = process.env.NEXT_PUBLIC_SITE_NAME!;
@@ -29,14 +29,16 @@ export const generateMetadata = async (): Promise<Metadata> => {
   };
 };
 
-export default function RootLayout({ children }: PropsWithChildren) {
+const Layout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="en">
-      <body className={`${font.className} antialiased`}>
-        <Header />
-        <main className="container mx-auto px-4">{children}</main>
-        <Footer />
+      <body className={`${font.className}`}>
+        <main className="bg-gray-800 text-gray-200 selection:bg-secondary selection:text-primary">
+          {children}
+        </main>
       </body>
     </html>
   );
-}
+};
+
+export default Layout;

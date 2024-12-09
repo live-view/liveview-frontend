@@ -1,39 +1,74 @@
 "use client";
 
-import { Step, useAppStore, type ChainType } from "@/stores/appStore";
+import { motion } from "motion/react";
+import Image from "next/image";
+
+import { useAppStore, type ChainType } from "@/stores/appStore";
+
+import Title from "./Title";
+
+type ChainItem = {
+  name: ChainType;
+  logo: string;
+};
+
+const chains: ChainItem[] = [
+  {
+    name: "Mainnet",
+    logo: "/images/ethereum.png",
+  },
+  {
+    name: "Base",
+    logo: "/images/base.png",
+  },
+  {
+    name: "Arbitrum",
+    logo: "/images/arbitrum.png",
+  },
+  {
+    name: "Optimism",
+    logo: "/images/optimism.png",
+  },
+  {
+    name: "Polygon",
+    logo: "/images/polygon.png",
+  },
+  {
+    name: "Bsc",
+    logo: "/images/bsc.png",
+  },
+];
 
 const SelectChain = () => {
-  const setStep = useAppStore((state) => state.setStep);
-  const chain = useAppStore((state) => state.chain);
+  // const chain = useAppStore((state) => state.chain);
+  // const setStep = useAppStore((state) => state.setStep);
   const setChain = useAppStore((state) => state.setChain);
 
   return (
-    <div>
-      SelectChain
-      <br />
-      <select
-        name="chain"
-        id="chain"
-        className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
-        onChange={(e) => setChain(e.target.value as ChainType)}
-      >
-        <option>Select Chain</option>
-        <option value="Mainnet">Mainnet</option>
-        <option value="Base">Base</option>
-        <option value="Arbitrum">Arbitrum</option>
-        <option value="Optimism">Optimism</option>
-        <option value="Polygon">Polygon</option>
-        <option value="Bsc">Bsc</option>
-      </select>
-      <br />
-      <button
-        className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
-        onClick={() => setStep(Step.SelectAddress)}
-        disabled={chain === "Unknown"}
-      >
-        Next
-      </button>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <Title title="Select your preferred chain" />
+      <ul className="my-12 grid grid-cols-2 place-items-center gap-4 sm:grid-cols-3">
+        {chains.map((chain) => (
+          <li key={chain.name} className="size-32">
+            <button
+              className="h-full w-full rounded-2xl border border-gray-700 p-5 shadow transition-all hover:border-primary hover:bg-gray-700 hover:p-4"
+              onClick={() => setChain(chain.name)}
+            >
+              <Image
+                src={chain.logo}
+                alt={chain.name}
+                width={200}
+                height={200}
+              />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
   );
 };
 
