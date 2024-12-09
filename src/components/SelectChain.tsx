@@ -55,7 +55,7 @@ const SelectChain = () => {
         {chains.map((chain) => (
           <li key={chain.name} className="size-32">
             <button
-              className="h-full w-full rounded-2xl border border-gray-700 p-5 shadow transition-all hover:border-primary hover:bg-gray-700 hover:p-4"
+              className="h-full w-full rounded-xl border border-gray-700 p-5 shadow transition-all hover:border-primary hover:bg-gray-700 hover:p-4"
               onClick={() => setChain(chain.name)}
             >
               <Image
