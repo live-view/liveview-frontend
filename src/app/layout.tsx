@@ -1,9 +1,11 @@
 import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
-
+import { ToastContainer } from "react-toastify";
 import { Inter as Font } from "next/font/google";
 
 import "@/styles/globals.css";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const font = Font({
   subsets: ["latin"],
@@ -36,6 +38,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         <main className="bg-gray-800 text-gray-200 selection:bg-secondary selection:text-primary">
           {children}
         </main>
+        <ToastContainer />
       </body>
     </html>
   );

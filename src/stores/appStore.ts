@@ -11,51 +11,79 @@ export type ChainType =
 
 export enum Step {
   SelectChain,
-  SelectAddress,
+  SelectToken,
   LiveView,
 }
+
+export type Token = {
+  name: string;
+  symbol: string;
+  address: string;
+};
+type StatusType = "idle" | "loading" | "success" | "error";
 
 type State = {
   step: Step;
   chain: ChainType;
-  addresses: string[];
+  tokens: Token[];
+  status: StatusType;
+  errorMessage: string;
 };
+
 type Actions = {
   setStep: (step: Step) => void;
   setChain: (chain: ChainType) => void;
 
-  setAddresses: (addresses: string[]) => void;
-  addAddress: (address: string) => void;
-  removeAddress: (address: string) => void;
+  addToken: (token: Token) => void;
+  removeToken: (address: string) => void;
+  removeTokens: () => void;
+  reset: () => void;
+  setStatus: (status: StatusType) => void;
+  setErrorMessage: (errorMessage: string) => void;
 };
 
 export const useAppStore = create<State & Actions>()((set) => ({
-  step: Step.SelectAddress,
+  step: Step.SelectChain,
   chain: "Unknown",
-  addresses: [],
+  tokens: [],
+  status: "idle",
+  errorMessage: "",
 
   //
   setStep: (step: Step) => {
     set({ step });
   },
   setChain: (chain: ChainType) => {
-    // set({chain,  });
-    set((state) => ({ ...state, chain, step: Step.SelectAddress }));
+    set((state) => ({ ...state, chain, step: Step.SelectToken }));
   },
-  setAddresses: (addresses: string[]) => {
-    // set({ addresses });
-    set((state) => ({ ...state, addresses, step: Step.LiveView }));
-  },
-  addAddress: (address: string) => {
+  addToken: (token: Token) => {
     set((state) => ({
       ...state,
-      addresses: [...state.addresses, address],
+      tokens: [...state.tokens, token],
     }));
   },
-  removeAddress: (address: string) => {
+  removeToken: (address: string) => {
     set((state) => ({
       ...state,
-      addresses: state.addresses.filter((x) => x !== address),
+      tokens: state.tokens.filter((x) => x.address !== address),
     }));
+  },
+  removeTokens: () => {
+    set((state) => ({ ...state, tokens: [] }));
+  },
+  setStatus: (status: StatusType) => {
+    set((state) => ({ ...state, status }));
+  },
+  setErrorMessage: (errorMessage: string) => {
+    set((state) => ({ ...state, errorMessage }));
+  },
+  reset: () => {
+    set({
+      step: Step.SelectChain,
+      chain: "Unknown",
+      tokens: [],
+      status: "idle",
+      errorMessage: "",
+    });
   },
 }));

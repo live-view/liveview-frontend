@@ -6,11 +6,11 @@ import { Step, useAppStore } from "@/stores/appStore";
 
 const LiveView = () => {
   const chain = useAppStore((state) => state.chain);
-  const addresses = useAppStore((state) => state.addresses);
+  const tokens = useAppStore((state) => state.tokens);
 
-  const setStep = useAppStore((state) => state.setStep);
-  const setChain = useAppStore((state) => state.setChain);
-  const setAddresses = useAppStore((state) => state.setAddresses);
+  // const setStep = useAppStore((state) => state.setStep);
+  // const setChain = useAppStore((state) => state.setChain);
+  const reset = useAppStore((state) => state.reset);
 
   return (
     <AnimatePresence>
@@ -25,14 +25,12 @@ const LiveView = () => {
         <div>
           Chain: {chain}
           <br />
-          Addresses: {addresses.join(", ")}
+          {/* Addresses: {tokens.join(", ")} */}
         </div>
         <button
           className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
           onClick={() => {
-            setChain("Unknown");
-            setAddresses([]);
-            setStep(Step.SelectChain);
+            reset();
           }}
         >
           Reset
