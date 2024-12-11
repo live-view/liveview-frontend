@@ -20,14 +20,29 @@ export type Token = {
   symbol: string;
   address: string;
 };
-type StatusType = "idle" | "loading" | "success" | "error";
+type Status = "idle" | "loading" | "success" | "error";
+
+export type Item = {
+  id: string;
+  uuid: string;
+  address: string;
+  name: string;
+  symbol: string;
+  from: string;
+  to: string;
+  block_number: number;
+  token_id: string;
+  transaction_hash: string;
+  timestamp: string;
+};
 
 type State = {
   step: Step;
   chain: ChainType;
   tokens: Token[];
-  status: StatusType;
+  status: Status;
   errorMessage: string;
+  items: Item[];
 };
 
 type Actions = {
@@ -38,8 +53,9 @@ type Actions = {
   removeToken: (address: string) => void;
   removeTokens: () => void;
   reset: () => void;
-  setStatus: (status: StatusType) => void;
+  setStatus: (status: Status) => void;
   setErrorMessage: (errorMessage: string) => void;
+  addItem: (item: Item) => void;
 };
 
 export const useAppStore = create<State & Actions>()((set) => ({
@@ -48,6 +64,7 @@ export const useAppStore = create<State & Actions>()((set) => ({
   tokens: [],
   status: "idle",
   errorMessage: "",
+  items: [],
 
   //
   setStep: (step: Step) => {
@@ -71,11 +88,17 @@ export const useAppStore = create<State & Actions>()((set) => ({
   removeTokens: () => {
     set((state) => ({ ...state, tokens: [] }));
   },
-  setStatus: (status: StatusType) => {
+  setStatus: (status: Status) => {
     set((state) => ({ ...state, status }));
   },
   setErrorMessage: (errorMessage: string) => {
     set((state) => ({ ...state, errorMessage }));
+  },
+  addItem: (item: Item) => {
+    set((state) => ({
+      ...state,
+      items: [...state.items, item],
+    }));
   },
   reset: () => {
     set({
@@ -84,6 +107,7 @@ export const useAppStore = create<State & Actions>()((set) => ({
       tokens: [],
       status: "idle",
       errorMessage: "",
+      items: [],
     });
   },
 }));

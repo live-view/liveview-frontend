@@ -5,6 +5,7 @@
     "liveview",
     "Toastify",
     "turbopack",
+    "uuidv",
     "vercel"
   ]
 }
