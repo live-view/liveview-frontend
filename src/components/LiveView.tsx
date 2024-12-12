@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useAppStore, type Item } from "@/stores/appStore";
 import { socket } from "@/utils/socket";
 import _ from "lodash";
+import ItemCard from "./ItemCard";
 
 const LiveView = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -66,7 +67,8 @@ const LiveView = () => {
             <br />
             <div className="h-72 scroll-m-10">
               {_.map(items, (x) => (
-                <div key={x.uuid}>{x.transaction_hash}</div>
+                // <div key={x.uuid}>{x.transaction_hash}</div>
+                <ItemCard key={x.uuid} item={x} />
               ))}
             </div>
           </div>

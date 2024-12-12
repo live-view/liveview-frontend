@@ -30,6 +30,8 @@ export type Item = {
   symbol: string;
   from: string;
   to: string;
+  image: string;
+  image_type: string;
   block_number: number;
   token_id: string;
   transaction_hash: string;
