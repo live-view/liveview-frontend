@@ -49,6 +49,7 @@ const SelectChain = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
+      // className="px-4"
     >
       <Title title="Select your preferred chain" />
       <ul className="my-12 grid grid-cols-2 place-items-center gap-4 sm:grid-cols-3">
@@ -63,6 +64,8 @@ const SelectChain = () => {
                 alt={chain.name}
                 width={200}
                 height={200}
+                priority
+                fetchPriority="high"
               />
             </button>
           </li>

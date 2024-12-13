@@ -61,9 +61,18 @@ type Actions = {
 };
 
 export const useAppStore = create<State & Actions>()((set) => ({
-  step: Step.SelectChain,
-  chain: "Unknown",
-  tokens: [],
+  // step: Step.SelectChain,
+  // chain: "Unknown",
+  // tokens: [],
+  step: Step.LiveView,
+  chain: "Base",
+  tokens: [
+    {
+      name: "",
+      symbol: "",
+      address: "0x827922686190790b37229fd06084350e74485b72",
+    },
+  ],
   status: "idle",
   errorMessage: "",
   items: [],
@@ -76,10 +85,9 @@ export const useAppStore = create<State & Actions>()((set) => ({
     set((state) => ({ ...state, chain, step: Step.SelectToken }));
   },
   addToken: (token: Token) => {
-    set((state) => ({
-      ...state,
-      tokens: [...state.tokens, token],
-    }));
+    set((state) => {
+      return { ...state, tokens: [...state.tokens, token] };
+    });
   },
   removeToken: (address: string) => {
     set((state) => ({
@@ -97,10 +105,14 @@ export const useAppStore = create<State & Actions>()((set) => ({
     set((state) => ({ ...state, errorMessage }));
   },
   addItem: (item: Item) => {
-    set((state) => ({
-      ...state,
-      items: [...state.items, item],
-    }));
+    set((state) => {
+      const items =
+        state.items.length >= 10
+          ? [item, ...state.items.slice(0, -1)] // Remove the first element and add the new item
+          : [item, ...state.items]; // Add the new item
+
+      return { ...state, items };
+    });
   },
   reset: () => {
     set({

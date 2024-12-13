@@ -1,5 +1,3 @@
-import { jwtDecode } from "jwt-decode";
-
 import type { Item } from "@/stores/appStore";
 import Image from "next/image";
 
@@ -20,6 +18,7 @@ const ItemCard = ({ item }: Props) => {
       try {
         return JSON.parse(atob(image)).image;
       } catch (e) {
+        console.error(e);
         return "https://etherscan.io/images/main/nft-placeholder.svg";
       }
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { IoSearch as SearchIcon } from "react-icons/io5";
 import Image from "next/image";
@@ -70,7 +70,8 @@ const SelectToken = () => {
         name: data.name,
         symbol: data.symbol,
       });
-    } catch (error) {
+    } catch (e) {
+      console.error(e);
       setStatus("error");
       setErrorMessage("Sorry we couldn't find any NFTs for this address");
     }
@@ -140,6 +141,7 @@ const SelectToken = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
+      className="px-4"
     >
       <Title title="Enter NFT addresses to track" />
       {tokens.length > 0 && (

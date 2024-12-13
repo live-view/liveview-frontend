@@ -10,7 +10,7 @@ const Page = () => {
   const step = useAppStore((state) => state.step);
 
   return (
-    <section className="grid h-screen place-items-center px-4">
+    <section className="grid place-items-center">
       {step === Step.SelectChain && <SelectChain />}
       {step === Step.SelectToken && <SelectToken />}
       {step === Step.LiveView && <LiveView />}
