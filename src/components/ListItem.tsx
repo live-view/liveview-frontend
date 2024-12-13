@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 
 import { useAppStore, type Item } from "@/stores/appStore";
+import FallbackImage from "./FallbackImage";
 
 type Props = {
   item: Item;
@@ -30,9 +31,10 @@ const ListItem = ({ item: x }: Props) => {
         className="row-span-1 flex h-12 items-center justify-between gap-2 rounded border-b border-r border-t border-gray-600 text-[10px] font-light text-gray-200 transition-all hover:bg-gray-700"
         target="_blank"
       >
-        <Image
+        <FallbackImage
           src={x.image}
           alt={x.name}
+          fallbackSrc="https://etherscan.io/images/main/nft-placeholder.svg"
           width={48}
           height={48}
           className="size-12 rounded-bl rounded-tl border-b border-l border-t border-gray-600"
