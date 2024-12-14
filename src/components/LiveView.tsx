@@ -64,17 +64,17 @@ const LiveView = () => {
   }, []);
 
   return (
-    <div className="grid h-[650px] w-full grid-cols-12">
+    <div className="grid h-[630px] min-h-screen w-full grid-cols-12">
       {isConnected && (
         <>
           <Image
-            className="col-span-9 w-full"
+            className="col-span-12 w-full md:col-span-9"
             src="/map.svg"
             alt="world map"
             width={1056}
             height={495}
           />
-          <ul className="col-span-12 grid grid-rows-10 items-start gap-[2px] rounded-lg border-2 border-gray-700 py-2 shadow-md md:col-span-3">
+          <ul className="col-span-12 flex flex-col items-center justify-start overflow-y-scroll border border-gray-700 pr-1 shadow-md md:col-span-3">
             {/* <AnimatePresence> */}
             {_.map(items, (x) => (
               <ListItem key={x.uuid} item={x} />
@@ -82,40 +82,16 @@ const LiveView = () => {
             {/* </AnimatePresence> */}
           </ul>
         </>
-        // <WorldMap
-        //   dots={[
-        //     {
-        //       start: {
-        //         lat: 64.2008,
-        //         lng: -149.4937,
-        //       }, // Alaska (Fairbanks)
-        //       end: {
-        //         lat: 34.0522,
-        //         lng: -118.2437,
-        //       }, // Los Angeles
-        //     },
-        //     {
-        //       start: { lat: 64.2008, lng: -149.4937 }, // Alaska (Fairbanks)
-        //       end: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
-        //     },
-        //     {
-        //       start: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
-        //       end: { lat: 38.7223, lng: -9.1393 }, // Lisbon
-        //     },
-        //     {
-        //       start: { lat: 51.5074, lng: -0.1278 }, // London
-        //       end: { lat: 28.6139, lng: 77.209 }, // New Delhi
-        //     },
-        //     {
-        //       start: { lat: 28.6139, lng: 77.209 }, // New Delhi
-        //       end: { lat: 43.1332, lng: 131.9113 }, // Vladivostok
-        //     },
-        //     {
-        //       start: { lat: 28.6139, lng: 77.209 }, // New Delhi
-        //       end: { lat: -1.2921, lng: 36.8219 }, // Nairobi
-        //     },
-        //   ]}
-        // />
+      )}
+      {!isConnected && (
+        <div className="col-span-12 flex w-full items-center justify-center">
+          <a
+            href="/"
+            className="rounded bg-primary px-4 py-2 text-sm font-light text-gray-200 hover:opacity-90"
+          >
+            Reload
+          </a>
+        </div>
       )}
       {/* Item lists */}
     </div>

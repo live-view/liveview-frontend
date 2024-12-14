@@ -34,6 +34,9 @@ const FallbackImage = ({
       height={height}
       onError={handleImageError}
       className={className}
+      priority
+      unoptimized
+      fetchPriority="high"
     />
   );
 };

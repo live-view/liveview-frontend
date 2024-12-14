@@ -1,9 +1,8 @@
 "use client";
 
-import { getScanUrl } from "@/lib/utils";
 import { motion } from "motion/react";
-import Image from "next/image";
 
+import { beautifyEthereumAddress, getScanUrl } from "@/lib/utils";
 import { useAppStore, type Item } from "@/stores/appStore";
 import FallbackImage from "./FallbackImage";
 
@@ -25,26 +24,35 @@ const ListItem = ({ item: x }: Props) => {
         ease: "easeInOut", // Smoother easing
       }}
       layout
+      className="mb-[2px] w-full"
     >
       <a
         href={`${getScanUrl(chain)}/tx/${x.transaction_hash}`}
-        className="row-span-1 flex h-12 items-center justify-between gap-2 rounded border-b border-r border-t border-gray-600 text-[10px] font-light text-gray-200 transition-all hover:bg-gray-700"
+        className="flex h-16 items-center justify-start rounded border-y border-r border-gray-600 text-gray-200 transition-all hover:border-primary hover:bg-gray-700"
         target="_blank"
       >
         <FallbackImage
           src={x.image}
           alt={x.name}
-          fallbackSrc="https://etherscan.io/images/main/nft-placeholder.svg"
-          width={48}
-          height={48}
-          className="size-12 rounded-bl rounded-tl border-b border-l border-t border-gray-600"
+          fallbackSrc="/nft.svg"
+          width={64}
+          height={64}
+          className="size-16 min-h-16 min-w-16 rounded bg-cover bg-center"
         />
-        <div>
-          <span className="line-clamp-1">
-            {x.symbol} ({x.name})
-          </span>
-          <br />
-          <span className="line-clamp-1">{x.uuid}</span>
+        <div className="flex h-full w-full flex-col items-start justify-between px-2 py-2">
+          <p className="">
+            <span className="line-clamp-1 text-[8px] font-semibold">
+              {x.symbol} (#{BigInt(x.token_id).toString()})
+            </span>
+            <span className="line-clamp-1 text-[8px] font-extralight">
+              {x.name}
+            </span>
+          </p>
+          <p className="text-[8px] font-extralight">
+            {" "}
+            {beautifyEthereumAddress(x.from)} {"->"}{" "}
+            {beautifyEthereumAddress(x.to)}
+          </p>
         </div>
       </a>
     </motion.li>
