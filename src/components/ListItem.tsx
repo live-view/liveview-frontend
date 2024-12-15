@@ -42,7 +42,7 @@ const ListItem = ({ item: x }: Props) => {
         <div className="flex h-full w-full flex-col items-start justify-between px-2 py-2">
           <p className="">
             <span className="line-clamp-1 text-[8px] font-semibold">
-              {x.symbol} (#{BigInt(x.token_id).toString()})
+              {x.symbol} #{BigInt(x.token_id).toString()}
             </span>
             <span className="line-clamp-1 text-[8px] font-extralight">
               {x.name}
@@ -50,7 +50,7 @@ const ListItem = ({ item: x }: Props) => {
           </p>
           <p className="text-[8px] font-extralight">
             {" "}
-            {beautifyEthereumAddress(x.from)} {"->"}{" "}
+            {beautifyEthereumAddress(x.from)} {"-->"}{" "}
             {beautifyEthereumAddress(x.to)}
           </p>
         </div>
