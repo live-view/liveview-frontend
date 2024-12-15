@@ -13,6 +13,9 @@ export default {
         primary: "#0052ff",
         secondary: "#c5dafc",
       },
+      backgroundImage: {
+        "custom-bg": "url('/map.svg')",
+      },
     },
   },
   plugins: [twAnimate],

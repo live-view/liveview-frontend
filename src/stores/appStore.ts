@@ -65,6 +65,20 @@ export const useAppStore = create<State & Actions>()((set) => ({
   // chain: "Unknown",
   // tokens: [],
   step: Step.LiveView,
+  // Arbitrum (for testing)
+  // chain: "Arbitrum",
+  // tokens: [
+  //   {
+  //     name: "",
+  //     symbol: "",
+  //     address: "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+  //   },
+  //   {
+  //     name: "",
+  //     symbol: "",
+  //     address: "0x1195cf65f83b3a5768f3c496d3a05ad6412c64b7",
+  //   },
+  // ],
   // Base (for testing)
   chain: "Base",
   tokens: [
@@ -230,7 +244,13 @@ export const useAppStore = create<State & Actions>()((set) => ({
   //     symbol: "",
   //     address: "0x8c186802b1992f7650ac865d4ca94d55ff3c0d17",
   //   },
+  //   {
+  //     name: "",
+  //     symbol: "",
+  //     address: "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+  //   },
   // ],
+
   status: "idle",
   errorMessage: "",
   items: [],

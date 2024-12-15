@@ -3,13 +3,17 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+// import Image from "next/image";
+// import { motion, AnimatePresence } from "framer-motion";
 
 import { useAppStore } from "@/stores/appStore";
 import { socket } from "@/utils/socket";
-import { getImageUrl, getScanUrl } from "@/lib/utils";
+import { getImageUrl } from "@/lib/utils";
 import ListItem from "./ListItem";
+
+import mapSvg from "@/assets/map.svg";
+import { motion } from "motion/react";
+import ItemCard from "./ItemCard";
 
 const LiveView = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -67,13 +71,11 @@ const LiveView = () => {
     <div className="grid h-[630px] min-h-screen w-full grid-cols-12">
       {isConnected && (
         <>
-          <Image
-            className="col-span-12 w-full md:col-span-9"
-            src="/map.svg"
-            alt="world map"
-            width={1056}
-            height={495}
-          />
+          <div className="relative col-span-12 h-[400px] w-full bg-custom-bg bg-cover bg-center bg-no-repeat md:col-span-9 md:h-full">
+            {_.map(items, (x) => (
+              <ItemCard key={x.uuid} item={x} />
+            ))}
+          </div>
           <ul className="col-span-12 flex flex-col items-center justify-start overflow-y-scroll border border-gray-700 pr-1 shadow-md md:col-span-3">
             {/* <AnimatePresence> */}
             {_.map(items, (x) => (
