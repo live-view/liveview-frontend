@@ -141,7 +141,7 @@ const SelectToken = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
-      className="px-4"
+      className="min-h-screen px-4 pt-16"
     >
       <Title title="Enter NFT addresses to track" />
       {tokens.length > 0 && (

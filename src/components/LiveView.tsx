@@ -3,16 +3,12 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
-// import Image from "next/image";
-// import { motion, AnimatePresence } from "framer-motion";
 
 import { useAppStore } from "@/stores/appStore";
 import { socket } from "@/utils/socket";
 import { getImageUrl } from "@/lib/utils";
 import ListItem from "./ListItem";
 
-import mapSvg from "@/assets/map.svg";
-import { motion } from "motion/react";
 import ItemCard from "./ItemCard";
 
 const LiveView = () => {
@@ -23,7 +19,6 @@ const LiveView = () => {
   const items = useAppStore((state) => state.items);
 
   const addItem = useAppStore((state) => state.addItem);
-  // const reset = useAppStore((state) => state.reset);
 
   useEffect(() => {
     socket.connect();
@@ -76,44 +71,25 @@ const LiveView = () => {
               <ItemCard key={x.uuid} item={x} />
             ))}
           </div>
-          <ul className="col-span-12 flex flex-col items-center justify-start overflow-y-scroll border border-gray-700 pr-1 shadow-md md:col-span-3">
-            {/* <AnimatePresence> */}
+          <ul className="col-span-12 flex min-h-screen flex-col items-center justify-start overflow-y-scroll border border-gray-700 pr-1 shadow-md md:col-span-3">
             {_.map(items, (x) => (
               <ListItem key={x.uuid} item={x} />
             ))}
-            {/* </AnimatePresence> */}
           </ul>
         </>
       )}
-      {!isConnected && (
-        <div className="col-span-12 flex w-full items-center justify-center">
-          <a
-            href="/"
-            className="rounded bg-primary px-4 py-2 text-sm font-light text-gray-200 hover:opacity-90"
-          >
-            Reload
-          </a>
-        </div>
-      )}
-      {/* Item lists */}
+      <div className="col-span-12 flex w-full items-center justify-center bg-gray-800 py-4">
+        <button
+          className="rounded bg-primary px-4 py-2 text-sm font-light text-gray-200 hover:opacity-90"
+          onClick={() => {
+            window.document.location.reload();
+          }}
+        >
+          Reload
+        </button>
+      </div>
     </div>
   );
 };
 
 export default LiveView;
-
-// {/* <div className="h-72 scroll-m-10">
-//   {_.map(items, (x) => (
-//     // <div key={x.uuid}>{x.transaction_hash}</div>
-//     <ItemCard key={x.uuid} item={x} />
-//   ))}
-// </div> */}
-
-// {/* <button
-// className="rounded bg-blue-500 px-4 py-2 font-bold text-white"
-// onClick={() => {
-//   reset();
-// }}
-// >
-// Reset
-// </button> */}

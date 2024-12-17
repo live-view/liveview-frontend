@@ -17,7 +17,6 @@ const ListItem = ({ item: x }: Props) => {
       key={x.uuid}
       initial={{ opacity: 0, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
-      // exit={{ opacity: 0, y: 0 }}
       transition={{
         type: "tween", // Switch to a tween animation (no spring)
         duration: 0.25, // Duration of the animation in seconds
