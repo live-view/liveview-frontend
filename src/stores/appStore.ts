@@ -66,43 +66,43 @@ export const useAppStore = create<State & Actions>()((set) => ({
   // tokens: [],
   step: Step.LiveView,
   // Arbitrum (for testing)
-  // chain: "Arbitrum",
-  // tokens: [
-  //   {
-  //     name: "",
-  //     symbol: "",
-  //     address: "0xc36442b4a4522e871399cd717abdd847ab11fe88",
-  //   },
-  //   {
-  //     name: "",
-  //     symbol: "",
-  //     address: "0x1195cf65f83b3a5768f3c496d3a05ad6412c64b7",
-  //   },
-  // ],
-  // Base (for testing)
-  chain: "Base",
+  chain: "Arbitrum",
   tokens: [
     {
       name: "",
       symbol: "",
-      address: "0x62c9c4bcf784ad09b34f366a769ce4a00a4d0255",
+      address: "0xc36442b4a4522e871399cd717abdd847ab11fe88",
     },
     {
       name: "",
       symbol: "",
-      address: "0x38ba98ada81a7671b683a7675a14a5b01c674ff4",
-    },
-    {
-      name: "",
-      symbol: "",
-      address: "0x827922686190790b37229fd06084350e74485b72",
-    },
-    {
-      name: "",
-      symbol: "",
-      address: "0x03a520b32c04bf3beef7beb72e919cf822ed34f1",
+      address: "0x1195cf65f83b3a5768f3c496d3a05ad6412c64b7",
     },
   ],
+  // Base (for testing)
+  // chain: "Base",
+  // tokens: [
+  //   {
+  //     name: "",
+  //     symbol: "",
+  //     address: "0x62c9c4bcf784ad09b34f366a769ce4a00a4d0255",
+  //   },
+  //   {
+  //     name: "",
+  //     symbol: "",
+  //     address: "0x38ba98ada81a7671b683a7675a14a5b01c674ff4",
+  //   },
+  //   {
+  //     name: "",
+  //     symbol: "",
+  //     address: "0x827922686190790b37229fd06084350e74485b72",
+  //   },
+  //   {
+  //     name: "",
+  //     symbol: "",
+  //     address: "0x03a520b32c04bf3beef7beb72e919cf822ed34f1",
+  //   },
+  // ],
   // Mainnet (for testing)
   // chain: "Mainnet",
   // tokens: [
