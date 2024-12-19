@@ -34,6 +34,12 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const Layout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="en">
+      <head>
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
+      </head>
       <body className={`${font.className}`}>
         <main className="bg-gray-800 text-gray-200 selection:bg-secondary selection:text-primary">
           {children}
