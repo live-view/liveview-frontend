@@ -82,6 +82,7 @@ const LiveView = () => {
         <button
           className="rounded bg-primary px-4 py-2 text-sm font-light text-gray-200 hover:opacity-90"
           onClick={() => {
+            socket.disconnect();
             window.document.location.reload();
           }}
         >
